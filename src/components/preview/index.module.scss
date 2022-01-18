@@ -1,16 +1,16 @@
 .preview {  
   border: 1px solid;
   display: flex;
-  justify-content: space-evenly;
   padding: 10px;
-  width: min-content;
+  width: 265px;
 }
 
 .content {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 10px;
+  flex: 1;
 }
 
 .controls {
