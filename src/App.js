@@ -69,7 +69,7 @@ export default function App() {
   return (
     <div className="App">
       {Object.values(state).map((switchState, i) => (
-        <div key={i.toString()} className="preview-wrapper">
+        <div className="preview-wrapper" key={i.toString()}>
           <Preview
             size={switchState.size}
             color={switchState.color}
