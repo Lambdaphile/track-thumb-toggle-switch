@@ -54,10 +54,7 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [{ 0: switch1, 1: switch2 }, dispatch] = React.useReducer(
-    reducer,
-    initialState
-  );
+  const [state, dispatch] = React.useReducer(reducer, initialState);
 
   function handleChange({ type, switchIndex, value }) {
     dispatch({
@@ -71,56 +68,33 @@ export default function App() {
 
   return (
     <div className="App">
-      <div className="preview-wrapper">
-        <Preview
-          size={switch1.size}
-          color={switch1.color}
-          onChangeSize={(value) =>
-            handleChange({ type: TYPES.CHANGE_SIZE, switchIndex: 0, value })
-          }
-          onChangeColor={(value) =>
-            handleChange({ type: TYPES.CHANGE_COLOR, switchIndex: 0, value })
-          }
-        >
-          <Switch
-            checked={switch1.checked}
-            size={switch1.size}
-            color={switch1.color}
-            onChange={(value) =>
-              handleChange({
-                type: TYPES.CHANGE_CHECKED,
-                switchIndex: 0,
-                value
-              })
+      {Object.values(state).map((switchState, i) => (
+        <div key={i.toString()} className="preview-wrapper">
+          <Preview
+            size={switchState.size}
+            color={switchState.color}
+            onChangeSize={(value) =>
+              handleChange({ type: TYPES.CHANGE_SIZE, switchIndex: i, value })
             }
-          />
-        </Preview>
-      </div>
-      <div className="preview-wrapper">
-        <Preview
-          size={switch2.size}
-          color={switch2.color}
-          onChangeSize={(value) =>
-            handleChange({ type: TYPES.CHANGE_SIZE, switchIndex: 1, value })
-          }
-          onChangeColor={(value) =>
-            handleChange({ type: TYPES.CHANGE_COLOR, switchIndex: 1, value })
-          }
-        >
-          <Switch
-            checked={switch2.checked}
-            color={switch2.color}
-            size={switch2.size}
-            onChange={(value) =>
-              handleChange({
-                type: TYPES.CHANGE_CHECKED,
-                switchIndex: 1,
-                value
-              })
+            onChangeColor={(value) =>
+              handleChange({ type: TYPES.CHANGE_COLOR, switchIndex: i, value })
             }
-          />
-        </Preview>
-      </div>
+          >
+            <Switch
+              checked={switchState.checked}
+              size={switchState.size}
+              color={switchState.color}
+              onChange={(value) =>
+                handleChange({
+                  type: TYPES.CHANGE_CHECKED,
+                  switchIndex: i,
+                  value
+                })
+              }
+            />
+          </Preview>
+        </div>
+      ))}
     </div>
   );
 }
