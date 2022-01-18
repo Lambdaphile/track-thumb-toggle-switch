@@ -11,14 +11,14 @@ const TYPES = {
 
 const initialState = {
   0: {
-    size: 8,
+    size: 10,
     color: "#c485db",
     checked: false
   },
   1: {
-    size: 10,
+    size: 12,
     color: "#6bbfdb",
-    checked: false
+    checked: true
   }
 };
 
